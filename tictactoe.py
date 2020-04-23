@@ -22,10 +22,12 @@ def player(board):
     """
     Returns player who has the next turn on a board.
     """
+    #check if thee board is in the initial state
     if board == initial_state():
-        player = X
-    elif board != initial_state() and player == X:
-        player = O
+        turn = X
+    #if it is not initial state and X has played then return O
+    elif board != initial_state() and turn == X:
+        turn = O
     return player
 
 
@@ -34,7 +36,18 @@ def actions(board):
     """
     Returns set of all possible actions (i, j) available on the board.
     """
-    raise NotImplementedError
+    possible_actions = set()
+    list_of_tuples = []
+    #loop over the game board
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            #check if any of the cells are empty and return them
+            if board[i][j] != 'X' and board[i][j] != 'O':
+                possible_actions.add(board[i][j])
+    return possible_actions
+                
+            
+
 
 
 def result(board, action):
