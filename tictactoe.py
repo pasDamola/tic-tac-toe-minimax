@@ -24,7 +24,7 @@ def player(board):
     """
     if board == initial_state():
         player = X
-    else:
+    elif board != initial_state() and player == X:
         player = O
     return player
 
