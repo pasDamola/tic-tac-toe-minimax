@@ -37,13 +37,12 @@ def actions(board):
     Returns set of all possible actions (i, j) available on the board.
     """
     possible_actions = set()
-    list_of_tuples = []
     #loop over the game board
     for i in range(len(board)):
         for j in range(len(board[i])):
-            #check if any of the cells are empty and return them
+            #check if any of the cells are empty and add them to the set
             if board[i][j] != 'X' and board[i][j] != 'O':
-                possible_actions.add(board[i][j])
+                possible_actions.add((i,j))
     return possible_actions
                 
             
