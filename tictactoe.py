@@ -74,46 +74,84 @@ def winner(board):
     # horizontal wins for X
     if board[0][0] == 'X' and board[0][1] == 'X' and board[0][2] == "X":
         return X
+    else:
+        return None
     if board[1][0] == 'X' and board[1][1] == 'X' and board[1][2] == "X":
         return X
+    else:
+        return None
     if board[2][0] == 'X' and board[2][1] == 'X' and board[2][2] == "X":
         return X
+    else:
+        return None
     # vertical wins for X
     if board[0][0] == 'X' and board[1][0] == 'X' and board[2][0] == "X":
         return X
+    else:
+        return None
     if board[0][1] == 'X' and board[1][1] == 'X' and board[2][1] == "X":
         return X
+    else:
+        return None
     if board[0][2] == 'X' and board[1][2] == 'X' and board[2][2] == "X":
+        return X
+    else:
+        return None
     # diagonal wins for X
     if board[0][0] == 'X' and board[1][1] == 'X' and board[2][2] == 'X':
         return X
+    else:
+        return None
     if board[0][2] == 'X' and board[1][1] == 'X' and board[0][2] == 'X':
         return X
+    else:
+        return None
      # horizontal wins for O
     if board[0][0] == 'O' and board[0][1] == 'O' and board[0][2] == 'O':
         return O
+    else:
+        return None
     if board[1][0] == 'O' and board[1][1] == 'O' and board[1][2] == 'O':
         return O
+    else:
+        return None
     if board[2][0] == 'O' and board[2][1] == 'O' and board[2][2] == 'O':
         return O
+    else:
+        return None
     # vertical wins for O
     if board[0][0] == 'O' and board[1][0] == 'O' and board[2][0] == 'O':
         return O
+    else:
+        return None
     if board[0][1] == 'O' and board[1][1] == 'O' and board[2][1] == 'O':
         return O
+    else:
+        return None
     if board[0][2] == 'O' and board[1][2] == 'O' and board[2][2] == 'O':
+        return O
+    else:
+        return None
     # diagonal wins for O
     if board[0][0] == 'O' and board[1][1] == 'O' and board[2][2] == 'O':
         return O
+    else:
+        return None
     if board[0][2] == 'O' and board[1][1] == 'O' and board[0][2] == 'O':
         return O
+    else:
+        return None
 
 
 def terminal(board):
     """
     Returns True if game is over, False otherwise.
     """
-    raise NotImplementedError
+    winner = winner(board)
+    if winner != None:
+        return True
+    else:
+        return False
 
 
 def utility(board):
