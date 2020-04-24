@@ -71,7 +71,42 @@ def winner(board):
     """
     Returns the winner of the game, if there is one.
     """
-    raise NotImplementedError
+    # horizontal wins for X
+    if board[0][0] == 'X' and board[0][1] == 'X' and board[0][2] == "X":
+        return X
+    if board[1][0] == 'X' and board[1][1] == 'X' and board[1][2] == "X":
+        return X
+    if board[2][0] == 'X' and board[2][1] == 'X' and board[2][2] == "X":
+        return X
+    # vertical wins for X
+    if board[0][0] == 'X' and board[1][0] == 'X' and board[2][0] == "X":
+        return X
+    if board[0][1] == 'X' and board[1][1] == 'X' and board[2][1] == "X":
+        return X
+    if board[0][2] == 'X' and board[1][2] == 'X' and board[2][2] == "X":
+    # diagonal wins for X
+    if board[0][0] == 'X' and board[1][1] == 'X' and board[2][2] == 'X':
+        return X
+    if board[0][2] == 'X' and board[1][1] == 'X' and board[0][2] == 'X':
+        return X
+     # horizontal wins for O
+    if board[0][0] == 'O' and board[0][1] == 'O' and board[0][2] == 'O':
+        return O
+    if board[1][0] == 'O' and board[1][1] == 'O' and board[1][2] == 'O':
+        return O
+    if board[2][0] == 'O' and board[2][1] == 'O' and board[2][2] == 'O':
+        return O
+    # vertical wins for O
+    if board[0][0] == 'O' and board[1][0] == 'O' and board[2][0] == 'O':
+        return O
+    if board[0][1] == 'O' and board[1][1] == 'O' and board[2][1] == 'O':
+        return O
+    if board[0][2] == 'O' and board[1][2] == 'O' and board[2][2] == 'O':
+    # diagonal wins for O
+    if board[0][0] == 'O' and board[1][1] == 'O' and board[2][2] == 'O':
+        return O
+    if board[0][2] == 'O' and board[1][1] == 'O' and board[0][2] == 'O':
+        return O
 
 
 def terminal(board):
