@@ -23,13 +23,15 @@ def player(board):
     """
     Returns player who has the next turn on a board.
     """
-    #check if thee board is in the initial state
+    turn = X
+    #set board is in the initial state
     if board == initial_state():
         turn = X
+        return turn
     #if it is not initial state and X has played then return O
     elif board != initial_state() and turn == X:
         turn = O
-    return turn
+        return turn
 
 
 
@@ -55,13 +57,13 @@ def result(board, action):
     Returns the board that results from making move (i, j) on the board.
     """
     new_board = copy.deepcopy(board)
-    player = player(new_board)
+    turn = player(new_board)
     possible_moves = actions(new_board)
     possible_moves = list(possible_moves)
     action = possible_moves[0]
     i = action[0]
     j = action[1]
-    new_board[i][j] = player
+    new_board[i][j] = turn
     return new_board
 
     
@@ -147,8 +149,8 @@ def terminal(board):
     """
     Returns True if game is over, False otherwise.
     """
-    winner = winner(board)
-    if winner != None:
+    who_won = winner(board)
+    if who_won != None:
         return True
     else:
         return False
@@ -172,4 +174,7 @@ def minimax(board):
     """
     Returns the optimal action for the current player on the board.
     """
-    raise NotImplementedError
+    if terminal(board) == False:
+        return None
+    else:
+        return "Hello"
