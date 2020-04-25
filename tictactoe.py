@@ -23,15 +23,17 @@ def player(board):
     """
     Returns player who has the next turn on a board.
     """
-    turn = X
-    #set board is in the initial state
-    if board == initial_state():
-        turn = X
-        return turn
-    #if it is not initial state and X has played then return O
-    elif board != initial_state() and turn == X:
+    count = 0
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+          if(board[i][j] == EMPTY):
+            count += 1
+    if count % 2 == 0:
         turn = O
-        return turn
+    else:
+        turn = X
+    return turn
+
 
 
 
@@ -57,15 +59,15 @@ def result(board, action):
     Returns the board that results from making move (i, j) on the board.
     """
     new_board = copy.deepcopy(board)
-    turn = player(new_board)
-    possible_moves = actions(new_board)
-    possible_moves = list(possible_moves)
-    action = possible_moves[0]
-    i = action[0]
-    j = action[1]
-    new_board[i][j] = turn
+    playing = player(new_board)
+    possible_actions = actions(board)
+    if new_board[action[0]][action[1]] != EMPTY:
+        raise ValueError("Incorrect Move")
+    if playing == O:    
+        new_board[action[0]][action[1]] = O
+    else:
+        new_board[action[0]][action[1]] = X
     return new_board
-
     
 
 
@@ -176,5 +178,31 @@ def minimax(board):
     """
     if terminal(board) == False:
         return None
+    if player(board) == X:
+        max_value(board)
     else:
-        return "Hello"
+        min_value(board)
+
+
+def max_value(board):
+    """
+    Returns the most maximum play possible, with the possible set of moves
+    """
+    if terminal(board) == True:
+        return utility(board)
+    v = -float('inf')
+    for action in actions(board):
+        v = max(v, min_value(result(board, action)))
+    return v
+
+
+def min_value(board):
+    """
+    Returns the most minimum play possible, with the possible set of moves
+    """
+    if terminal(board) == True:
+        return utility(board)
+    v = float('inf')
+    for action in actions(board):
+        v = min(v, max_value(result(board, action)))
+    return v
