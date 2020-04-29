@@ -158,7 +158,7 @@ def minimax(board):
         v = float('-inf')
         selected_action = None
         for action in actions(board):
-            minValue = min_value(result(board, action))
+            minValue = min_value(result(board, action), float('inf'))
             if minValue > v:
                 v = minValue
                 selected_action = action
@@ -166,14 +166,14 @@ def minimax(board):
         v = float('inf')
         selected_action = None
         for action in actions(board):
-            maxValue = max_value(result(board, action))
+            maxValue = max_value(result(board, action), float('-inf'))
             if maxValue < v:
                 v = maxValue
                 selected_action = action
     return selected_action
 
 
-def max_value(board):
+def max_value(board, beta):
     """
     Returns the most maximum play possible, with the possible set of moves
     """
@@ -181,11 +181,12 @@ def max_value(board):
         return utility(board)
     v = -float('inf')
     for action in actions(board):
-        v = max(v, min_value(result(board, action)))
+        v = max(v, min_value(result(board, action), beta))
+        beta = max(v, beta)
     return v
 
 
-def min_value(board):
+def min_value(board, alpha):
     """
     Returns the most minimum play possible, with the possible set of moves
     """
@@ -193,5 +194,6 @@ def min_value(board):
         return utility(board)
     v = float('inf')
     for action in actions(board):
-        v = min(v, max_value(result(board, action)))
+        v = min(v, max_value(result(board, action), alpha))
+        alpha = min(v, alpha)
     return v
