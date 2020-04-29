@@ -183,6 +183,8 @@ def max_value(board, beta):
     for action in actions(board):
         v = max(v, min_value(result(board, action), beta))
         beta = max(v, beta)
+        if v <= beta:
+            break
     return v
 
 
@@ -196,4 +198,6 @@ def min_value(board, alpha):
     for action in actions(board):
         v = min(v, max_value(result(board, action), alpha))
         alpha = min(v, alpha)
+        if alpha <= v:
+            break
     return v
